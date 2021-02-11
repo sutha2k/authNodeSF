@@ -1,3 +1,5 @@
-.env
 selfsigned.key
 selfsigned.crt
+/node_modules
+npm-debug.log
+/*.env
