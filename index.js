@@ -15,10 +15,6 @@ if (process.env.SERVER_ENV !== 'production') {
 
     http.createServer(app).listen(8080);
     https.createServer(options, app).listen(8443);
-
-    app.listen(8000, () => {
-        console.log('Server is running')
-    })
 }
 
 const app = express()
@@ -27,4 +23,9 @@ app.use('',privateresources)
 
 app.get('/', function (req, res) {
     res.send('Welcome to Node.JS Auth with Salesforce');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
 });
