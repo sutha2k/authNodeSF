@@ -4,6 +4,11 @@ module.exports = function(req, res, next) {
   const token = req.headers["bearer"];
   const instanceUrl = req.headers["instanceurl"];
 
+  process.on('uncaughtException', err => {
+    console.error('There was an uncaught error', err)
+    process.exit(1)
+  })
+
   if (!token || !instanceUrl) return res.status(401).send("Access denied. No token provided.");
 
   try {
