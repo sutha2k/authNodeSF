@@ -34,6 +34,7 @@ app.get('/oauth2/authorize', function(req, res) {
         clientSecret: process.env.CLIENT_SECRET_ID,
         redirectUri: process.env.REDIRECT_URI
     });
+    console.log('REDIRECT_URI:'+oauth2.getAuthorizationUrl({}))
     res.redirect(oauth2.getAuthorizationUrl({}));
 })
 
