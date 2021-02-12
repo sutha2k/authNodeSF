@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
     });
     
     conn.identity(function(err, res) {
-        if (err) { throw err; }
+        if (err) { throw new Error(err.message); }
     });
     next();
   } catch (ex) {
