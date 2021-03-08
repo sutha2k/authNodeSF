@@ -2,7 +2,6 @@ const jsforce = require('jsforce')
 
 process.on('uncaughtException', err => {
   console.error('There was an uncaught error', err);
-  res.status(400).send("Invalid token.");
   process.exit(1) //mandatory (as per the Node.js docs)
 })
 
