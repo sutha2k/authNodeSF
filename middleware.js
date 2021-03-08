@@ -19,7 +19,7 @@ module.exports = function(req, res, next) {
     
     conn.identity(function(err, res) {
         if (err) { throw new Error(err.message); }
-        res.status(400).send("Invalid token0. ${res}");
+        console.log("Invalid token0.", res);
     });
     next();
   } catch (ex) {
