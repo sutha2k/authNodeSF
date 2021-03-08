@@ -18,11 +18,15 @@ module.exports = function(req, res, next) {
     });
     
     conn.identity(function(err, res) {
-        if (err) { console.log("step1");throw new Error(err.message); }
-        console.log("Invalid token0.", res);
+        try {
+          if (err) { console.log("step1");throw new Error(err.message); }
+          console.log("Invalid token0.", res);
+          next();
+        } catch (ex){
+          res.status(400).send("Invalid token.");
+        }
     });
     console.log("step2");
-    next();
   } catch (ex) {
     console.log("step3");
     res.status(400).send("Invalid token.");
