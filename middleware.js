@@ -3,7 +3,7 @@ const jsforce = require('jsforce')
 process.on('uncaughtException', err => {
   console.error('There was an uncaught error', err);
   res.status(400).send("Invalid token.");
-  process.exit(1); //mandatory (as per the Node.js docs)
+  process.exit(1) //mandatory (as per the Node.js docs)
 })
 
 module.exports = function(req, res, next) {
@@ -20,16 +20,13 @@ module.exports = function(req, res, next) {
     
     conn.identity(function(err, res) {
         try {
-          if (err) { console.log("step1");throw new Error(err.message); }
-          console.log("Invalid token0.", res);
+          if (err) { throw new Error(err.message); }
           next();
         } catch (ex){
           res.status(400).send("Invalid token.");
         }
     });
-    console.log("step2");
   } catch (ex) {
-    console.log("step3");
     res.status(400).send("Invalid token.");
   }
 };
