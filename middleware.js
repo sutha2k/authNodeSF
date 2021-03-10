@@ -26,12 +26,12 @@ module.exports = function(req, res, next) {
           if (err) { throw new Error(err.message); }
           next();
         } catch (ex){
-          console.log(ex.message);
+          console.log("err1 ",ex.message);
           //return res.status(400).send("Invalid token.");
         }
     });
   } catch (ex) {
-    console.log(ex.message);
+    console.log("err2 ",ex.message);
     //return res.status(400).send("Invalid token.");
   }
   return res.status(401).send("Access denied. Invaid token.");
