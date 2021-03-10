@@ -26,10 +26,12 @@ module.exports = function(req, res, next) {
           if (err) { throw new Error(err.message); }
           next();
         } catch (ex){
-          res.status(400).send("Invalid token.");
+          console.log(ex.message);
+          return res.status(400).send("Invalid token.");
         }
     });
   } catch (ex) {
-    res.status(400).send("Invalid token.");
+    console.log(ex.message);
+    return res.status(400).send("Invalid token.");
   }
 };
