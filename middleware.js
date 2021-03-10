@@ -24,15 +24,17 @@ module.exports = function(req, res, next) {
     conn.identity(function(err, res) {
         try {
           if (err) { throw new Error(err.message); }
+          console.log("user ID: " + res.user_id);
+          console.log("organization ID: " + res.organization_id);
+          console.log("username: " + res.username);
+          console.log("display name: " + res.display_name);
           next();
         } catch (ex){
           console.log("err1 ",ex.message);
-          //return res.status(400).send("Invalid token.");
         }
     });
   } catch (ex) {
     console.log("err2 ",ex.message);
-    //return res.status(400).send("Invalid token.");
   }
   return res.status(401).send("Access denied. Invaid token.");
 };
