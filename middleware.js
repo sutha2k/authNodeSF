@@ -9,14 +9,11 @@ module.exports = function(req, res, next) {
   const token = req.headers["bearer"];
   const instanceUrl = req.headers["instanceurl"];
 
-  console.log(JSON.stringify(req.headers));
-
   if (!token || !instanceUrl){
     next(new Error("No instanceurl or token provided"));
+    return;
   }
 
-  console.log("bearer ", token);
-  console.log("instanceUrl ", instanceUrl);
   try {
     const conn = new jsforce.Connection({
         instanceUrl : instanceUrl,
@@ -33,9 +30,11 @@ module.exports = function(req, res, next) {
           next();
         } catch (ex){
           next(new Error("Identity error: "+ex.message));
+          return;
         }
     });
   } catch (ex) {
     next(new Error("Authentication error: "+ex.message));
+    return;
   }
 };
