@@ -31,7 +31,7 @@ module.exports = function(req, res, next) {
           next(new Error("Identity error: "+ex.message));
           return;
         }
-    }).then(function(String){next();});
+    }).then(function(String){next(null,null,res);});
   } catch (ex) {
     next(new Error("Authentication error: "+ex.message));
     return;

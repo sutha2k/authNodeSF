@@ -8,7 +8,7 @@ router.get("/secured", middleware, async (err, req, res) => {
         res.status(401).send("Access denied: "+err.message);
         return;
     }
-    console.log('Accessing secured resource');
+    console.log('Accessing secured resource ', res);
     res.send('Accessing secured resource');
 });
 
