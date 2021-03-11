@@ -28,6 +28,7 @@ module.exports = function(req, res, next) {
           console.log("username: " + res.username);
           console.log("display name: " + res.display_name);
           next();
+          return;
         } catch (ex){
           next(new Error("Identity error: "+ex.message));
           return;
