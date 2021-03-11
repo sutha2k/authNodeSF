@@ -8,6 +8,7 @@ process.on('uncaughtException', err => {
 module.exports = function(req, res, next) {
   const token = req.headers["bearer"];
   const instanceUrl = req.headers["instanceurl"];
+  const hasErrors = false;
 
   console.log(JSON.stringify(req.headers));
 
@@ -30,11 +31,15 @@ module.exports = function(req, res, next) {
           console.log("display name: " + res.display_name);
           next();
         } catch (ex){
-          console.log("err1 ",ex.message);
+          hasErrors = true;
+          console.log("Identity error: ",ex.message);
         }
     });
   } catch (ex) {
-    console.log("err2 ",ex.message);
+    hasErrors = true;
+    console.log("Authentication error: ",ex.message);
   }
-  return res.status(401).send("Access denied. Invaid token.");
+  if (hasErrors){
+    return res.status(401).send("Access denied. Invaid token.");
+  }
 };
