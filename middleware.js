@@ -11,7 +11,9 @@ module.exports = function(req, res, next) {
 
   console.log(JSON.stringify(req.headers));
 
-  if (!token || !instanceUrl) return res.status(401).send("Access denied. No token provided.");
+  if (!token || !instanceUrl){
+    next(new Error("No instanceurl or token provided"));
+  }
 
   console.log("bearer ", token);
   console.log("instanceUrl ", instanceUrl);
@@ -34,7 +36,6 @@ module.exports = function(req, res, next) {
         }
     });
   } catch (ex) {
-    console.log("Authentication error: ",ex.message);
-    return res.status(401).send("Access denied. Invaid token.");
+    next(new Error("Authentication error: ",ex.message));
   }
 };

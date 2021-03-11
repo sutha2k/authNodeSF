@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.get("/secured", middleware, async (err, req, res, next) => {
     if (err){
-        return res.status(401).send("Access denied");
+        console.log(err.message);
+        return res.status(401).send("Access denied: "+err.message);
     }
     res.send('Accessing secured resource');
 });
