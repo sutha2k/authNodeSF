@@ -10,7 +10,7 @@ module.exports = function(req, res, next) {
   const instanceUrl = req.headers["instanceurl"];
 
   if (!token || !instanceUrl){
-    next(new Error("No instanceurl or token provided"), req, res);
+    next(new Error("No instanceurl or token provided"));
     return;
   }
 
@@ -20,21 +20,21 @@ module.exports = function(req, res, next) {
         accessToken : token
     });
     
-    conn.identity(function(err, req, res, next) {
+    conn.identity(function(err, res) {
         try {
           if (err) { throw new Error(err.message); }
           console.log("user ID: " + res.user_id);
           console.log("organization ID: " + res.organization_id);
           console.log("username: " + res.username);
           console.log("display name: " + res.display_name);
-          next(null, req, res);
+          next(null);
         } catch (ex){
-          next(new Error("Identity error: "+ex.message), req, res);
+          next(new Error("Identity error: "+ex.message));
           return;
         }
     });
   } catch (ex) {
-    next(new Error("Authentication error: "+ex.message), req, res);
+    next(new Error("Authentication error: "+ex.message));
     return;
   }
   return;
