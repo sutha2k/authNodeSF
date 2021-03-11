@@ -2,6 +2,7 @@ const middleware = require("./middleware");
 const express = require("express");
 const router = express.Router();
 
+console.log('I m her : Accessing secured resource');
 router.get("/secured", middleware, async (err, req, res) => {
     if (err){
         console.log(err.message);

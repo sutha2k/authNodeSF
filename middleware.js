@@ -5,7 +5,7 @@ process.on('uncaughtException', err => {
   process.exit(1) //mandatory (as per the Node.js docs)
 })
 
-module.exports = function(req, res) {
+module.exports = function(req, res, next) {
   const token = req.headers["bearer"];
   const instanceUrl = req.headers["instanceurl"];
 
