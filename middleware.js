@@ -30,8 +30,7 @@ module.exports = function(req, res, next) {
           console.log("display name: " + res.display_name);
           next();
         } catch (ex){
-          var err = new Error("Identity error: ",ex.message);
-          throw err;
+          next(new Error("Identity error: ",ex.message));
         }
     });
   } catch (ex) {
