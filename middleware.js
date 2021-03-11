@@ -8,7 +8,7 @@ process.on('uncaughtException', err => {
 module.exports = function(req, res, next) {
   const token = req.headers["bearer"];
   const instanceUrl = req.headers["instanceurl"];
-  const hasErrors = false;
+  var hasErrors = false;
 
   console.log(JSON.stringify(req.headers));
 
