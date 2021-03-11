@@ -10,8 +10,7 @@ module.exports = function(req, res, next) {
   const instanceUrl = req.headers["instanceurl"];
 
   if (!token || !instanceUrl){
-    next(new Error("No instanceurl or token provided"));
-    return;
+    return next(new Error("No instanceurl or token provided"));
   }
 
   try {
@@ -29,13 +28,11 @@ module.exports = function(req, res, next) {
           console.log("display name: " + results.display_name);
           return next();
         } catch (ex){
-          next(new Error("Identity error: "+ex.message));
-          return;
+          return next(new Error("Identity error: "+ex.message));
         }
     });
   } catch (ex) {
-    next(new Error("Authentication error: "+ex.message));
-    return;
+    return next(new Error("Authentication error: "+ex.message));
   }
   return;
 };
