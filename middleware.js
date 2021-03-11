@@ -27,11 +27,12 @@ module.exports = function(req, res, next) {
           console.log("organization ID: " + results.organization_id);
           console.log("username: " + results.username);
           console.log("display name: " + results.display_name);
+          next(null,null,res)
         } catch (ex){
           next(new Error("Identity error: "+ex.message));
           return;
         }
-    }).then(function(String){next(null,null,res);});
+    });
   } catch (ex) {
     next(new Error("Authentication error: "+ex.message));
     return;
