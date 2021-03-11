@@ -20,13 +20,13 @@ module.exports = function(req, res, next) {
         accessToken : token
     });
     
-    conn.identity(function(err, res) {
+    conn.identity(function(errors, results) {
         try {
-          if (err) { throw new Error(err.message); }
-          console.log("user ID: " + res.user_id);
-          console.log("organization ID: " + res.organization_id);
-          console.log("username: " + res.username);
-          console.log("display name: " + res.display_name);
+          if (errors) { throw new Error(errors.message); }
+          console.log("user ID: " + results.user_id);
+          console.log("organization ID: " + results.organization_id);
+          console.log("username: " + results.username);
+          console.log("display name: " + results.display_name);
         } catch (ex){
           next(new Error("Identity error: "+ex.message));
           return;
