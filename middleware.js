@@ -32,10 +32,10 @@ module.exports = function(req, res, next) {
           console.log("display name: " + res.display_name);
           next();
         } catch (ex){
-          next(new Error("Identity error: ",ex.message));
+          next(new Error("Identity error: "+ex.message));
         }
     });
   } catch (ex) {
-    next(new Error("Authentication error: ",ex.message));
+    next(new Error("Authentication error: "+ex.message));
   }
 };
